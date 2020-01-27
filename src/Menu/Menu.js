@@ -10,15 +10,21 @@ const MenuStyled = styled.div `
   margin: 0px 400px 50px 20px;
 `
 
-export function Menu(){
+export function Menu({ setOpenFood }){
   return <MenuStyled>
-    {Object.entries(foods).map(([sectionName, foods]) => (
+    {Object.entries(foods).map(([sectionName, foods], i) => (
       <>
-        <h1> {sectionName} </h1>
-        <FoodGrid>
-          {foods.map(food => (
-            <Food img={food.img}> 
-              <FoodLabel>{food.name}</FoodLabel> 
+        <h1 key={`section_${i}`}> {sectionName} </h1>
+        <FoodGrid key={sectionName}>
+          {foods.map((food) => (
+            <Food
+              key={food.name}
+              img={food.img} 
+              onClick={() => {
+                setOpenFood(food);
+              }}
+            > 
+              <FoodLabel key={food.name}>{food.name}</FoodLabel> 
             </Food>
           ))
           }
