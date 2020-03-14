@@ -1,35 +1,41 @@
 import React from 'react';
 import styled from 'styled-components';
-import { foods } from '../Data/FoodData'
+import { foods, formatPrice } from '../Data/FoodData';
 
-import { Food, FoodGrid, FoodLabel } from './FoodGrid'
+import { Food, FoodGrid, FoodLabel } from './FoodGrid';
 
-const MenuStyled = styled.div `
+const MenuStyled = styled.div`
   /* border: 2px solid black; */
   height: 1000px;
   margin: 0px 400px 50px 20px;
-`
+`;
 
-export function Menu({ setOpenFood }){
-  return <MenuStyled>
-    {Object.entries(foods).map(([sectionName, foods], i) => (
-      <>
-        <h1 key={`section_${i}`}> {sectionName} </h1>
-        <FoodGrid key={sectionName}>
-          {foods.map((food) => (
-            <Food
-              key={food.name}
-              img={food.img} 
-              onClick={() => {
-                setOpenFood(food);
-              }}
-            > 
-              <FoodLabel key={food.name}>{food.name}</FoodLabel> 
-            </Food>
-          ))
-          }
-        </FoodGrid>
-      </>
-    ))}
-  </MenuStyled>
+function Menu({ setOpenFood }) {
+  return (
+    <MenuStyled>
+      {Object.entries(foods).map(([sectionName, section]) => (
+        <>
+          <h1 key={`section_${sectionName}`}>{sectionName}</h1>
+          <FoodGrid key={sectionName}>
+            {section.map(food => (
+              <Food
+                key={food.name}
+                img={food.img}
+                onClick={() => {
+                  setOpenFood(food);
+                }}
+              >
+                <FoodLabel key={food.name}>
+                  <div>{food.name}</div>
+                  <div>{formatPrice(food.price)}</div>
+                </FoodLabel>
+              </Food>
+            ))}
+          </FoodGrid>
+        </>
+      ))}
+    </MenuStyled>
+  );
 }
+
+export default Menu;
