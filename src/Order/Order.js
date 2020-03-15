@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import {
   DialogContent,
   DialogFooter,
-  ConfirmButton
+  ConfirmButton,
+  getPrice
 } from '../FoodDialog/FoodDialog';
 import { formatPrice } from '../Data/FoodData';
 
@@ -48,10 +49,10 @@ export default function Order({ orders }) {
           {orders.map(order => (
             <OrderContainer>
               <OrderItem>
-                <div>1</div>
+                <div>{order.quantity}</div>
                 <div>{order.name}</div>
                 <div />
-                <div>{formatPrice(order.price)}</div>
+                <div>{formatPrice(getPrice(order))}</div>
               </OrderItem>
             </OrderContainer>
           ))}
