@@ -54,7 +54,13 @@ const DetailItem = styled.div`
   font-size: 10px;
 `;
 
-export default function Order({ orders, setOrders, setOpenFood }) {
+export default function Order({
+  orders,
+  setOrders,
+  setOpenFood,
+  login,
+  loggedIn
+}) {
   const subtotal = orders.reduce((total, order) => {
     return total + getPrice(order);
   }, 0);
@@ -68,6 +74,12 @@ export default function Order({ orders, setOrders, setOpenFood }) {
     setOrders(newOrders);
   };
 
+  const handleCheckout = () => {
+    if (!loggedIn) {
+      login();
+    }
+  };
+
   return (
     <OrderStyled>
       {orders.length === 0 ? (
@@ -76,7 +88,7 @@ export default function Order({ orders, setOrders, setOpenFood }) {
         <OrderContent>
           <OrderContainer> Your order: </OrderContainer>
           {orders.map((order, index) => (
-            <OrderContainer editable>
+            <OrderContainer editable key={order.name}>
               <OrderItem
                 onClick={() => {
                   setOpenFood({ ...order, index });
@@ -128,7 +140,7 @@ export default function Order({ orders, setOrders, setOpenFood }) {
         </OrderContent>
       )}
       <DialogFooter>
-        <ConfirmButton>Checkout</ConfirmButton>
+        <ConfirmButton onClick={handleCheckout}>Checkout</ConfirmButton>
       </DialogFooter>
     </OrderStyled>
   );
