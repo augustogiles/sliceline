@@ -14,7 +14,7 @@ function Menu({ setOpenFood }) {
   return (
     <MenuStyled>
       {Object.entries(foods).map(([sectionName, section]) => (
-        <>
+        <React.Fragment key={`frag${sectionName}`}>
           <h1 key={`section_${sectionName}`}>{sectionName}</h1>
           <FoodGrid key={sectionName}>
             {section.map(food => (
@@ -25,14 +25,14 @@ function Menu({ setOpenFood }) {
                   setOpenFood(food);
                 }}
               >
-                <FoodLabel key={food.name}>
+                <FoodLabel key={`label_${food.name}`}>
                   <div>{food.name}</div>
                   <div>{formatPrice(food.price)}</div>
                 </FoodLabel>
               </Food>
             ))}
           </FoodGrid>
-        </>
+        </React.Fragment>
       ))}
     </MenuStyled>
   );
