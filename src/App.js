@@ -22,10 +22,6 @@ function App() {
       <Order {...orders} />
       <Banner />
       <Menu {...openFood} />
-      <img
-        src="https://www.metaweather.com/static/img/weather/png/64/c.png"
-        alt="forecast-img"
-      />
     </>
   );
 }
