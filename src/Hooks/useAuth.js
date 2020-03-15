@@ -11,10 +11,12 @@ export default function useAuth() {
   }
 
   function logout() {
-    auth.signOut().then(() => {
-      //Success
-    })
-    .catch(err => console.log(err));
+    auth
+      .signOut()
+      .then(() => {
+        // Success
+      })
+      .catch(err => console.log(err));
   }
 
   useEffect(() => {
