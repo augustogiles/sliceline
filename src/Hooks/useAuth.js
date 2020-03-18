@@ -24,7 +24,6 @@ export default function useAuth() {
       user => {
         if (user) {
           setAuthenticated(user);
-          console.log(user);
         } else {
           setAuthenticated();
         }
