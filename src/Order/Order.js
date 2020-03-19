@@ -8,8 +8,7 @@ import {
   getPrice
 } from '../FoodDialog/FoodDialog';
 import { formatPrice } from '../Data/FoodData';
-
-const database = window.firebase.database();
+import { database } from '../firebase';
 
 const OrderStyled = styled.div`
   position: fixed;
