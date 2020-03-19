@@ -10,8 +10,6 @@ import {
 import { formatPrice } from '../Data/FoodData';
 import { database } from '../firebase';
 
-const database = window.firebase.database();
-
 const OrderStyled = styled.div`
   position: fixed;
   right: 0px;
