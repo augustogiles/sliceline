@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Banner from './Banner/Banner';
 import Navbar from './Navbar/Navbar';
@@ -10,14 +10,43 @@ import useTitle from './Hooks/useTitle';
 import useAuth from './Hooks/useAuth';
 import useOrderDialog from './Hooks/useOrderDialog';
 import Routes from './routes';
+import { database } from './firebase';
+
+async function getHistory() {
+  let list = null;
+  const ordersListRef = database.ref('orders');
+  await ordersListRef.once(await 'value', snap => {
+    const objects = snap.val();
+    list = Object.keys(snap.val()).map(id => {
+      const data = objects[id];
+      const orderPayload = {
+        id,
+        ...data
+      };
+
+      return orderPayload;
+    });
+  });
+
+  return list;
+}
 
 function App() {
+  const [history, setHistory] = useState(null);
+
   const openFood = useOpenFood();
   const orders = useOrders();
   const auth = useAuth();
   const orderDialog = useOrderDialog();
-  useTitle({ ...openFood, ...orders });
 
+  useEffect(() => {
+    getHistory().then(ordersHist => {
+      setHistory(ordersHist);
+    });
+  }, []);
+
+  useTitle({ ...openFood, ...orders });
+  console.log(history);
   return (
     <>
       <BrowserRouter>
