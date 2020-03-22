@@ -3,14 +3,14 @@ import { Switch, Route, Redirect, BrowserRouter } from 'react-router-dom';
 import History from './Pages/History';
 import Main from './Pages/Main';
 
-function Routes() {
+function Routes(distProps) {
   return (
     <>
       <BrowserRouter>
         <Switch>
           <Redirect from="/react-pizza" to="/" />
           <Route path="/history" component={History} />
-          <Route component={Main} />
+          <Route component={props => <Main {...props} {...distProps} />} />
         </Switch>
       </BrowserRouter>
     </>
