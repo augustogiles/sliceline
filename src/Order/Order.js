@@ -16,7 +16,7 @@ const OrderStyled = styled.div`
   top: 50px;
   width: 340px;
   background-color: white;
-  height: 100%;
+  height: calc(100% - 48px);
   z-index: 10;
   box-shadow: 4px 0px 5px 4px grey;
   display: flex;
