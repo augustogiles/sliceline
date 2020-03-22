@@ -1,18 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
+import { ContentWrapper } from '../Styles/commons';
 import { foods, formatPrice } from '../Data/FoodData';
-
 import { Food, FoodGrid, FoodLabel } from './FoodGrid';
-
-const MenuStyled = styled.div`
-  /* border: 2px solid black; */
-  height: 1000px;
-  margin: 0px 400px 50px 20px;
-`;
 
 function Menu({ setOpenFood }) {
   return (
-    <MenuStyled>
+    <ContentWrapper>
       {Object.entries(foods).map(([sectionName, section]) => (
         <React.Fragment key={`frag${sectionName}`}>
           <h1 key={`section_${sectionName}`}>{sectionName}</h1>
@@ -34,7 +27,7 @@ function Menu({ setOpenFood }) {
           </FoodGrid>
         </React.Fragment>
       ))}
-    </MenuStyled>
+    </ContentWrapper>
   );
 }
 
