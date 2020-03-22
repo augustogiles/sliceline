@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from './Navbar/Navbar';
-import { GlobalStyle } from './Styles/GlobalStyle';
+import GlobalStyle from './Styles/GlobalStyle';
 import Order from './Order/Order';
 import useOpenFood from './Hooks/useOpenFood';
 import useOrders from './Hooks/useOrders';
@@ -21,7 +21,7 @@ function App() {
       <GlobalStyle />
       <Navbar {...auth} />
       <Order {...orders} {...openFood} {...auth} {...orderDialog} />
-      <Routes />
+      <Routes orders={orders} orderDialog={orderDialog} openFood={openFood} />
     </>
   );
 }
