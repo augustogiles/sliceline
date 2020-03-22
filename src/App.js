@@ -1,4 +1,6 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import Banner from './Banner/Banner';
 import Navbar from './Navbar/Navbar';
 import GlobalStyle from './Styles/GlobalStyle';
 import Order from './Order/Order';
@@ -18,10 +20,13 @@ function App() {
 
   return (
     <>
-      <GlobalStyle />
-      <Navbar {...auth} />
-      <Order {...orders} {...openFood} {...auth} {...orderDialog} />
-      <Routes orders={orders} orderDialog={orderDialog} openFood={openFood} />
+      <BrowserRouter>
+        <GlobalStyle />
+        <Banner />
+        <Navbar {...auth} />
+        <Order {...orders} {...openFood} {...auth} {...orderDialog} />
+        <Routes orders={orders} orderDialog={orderDialog} openFood={openFood} />
+      </BrowserRouter>
     </>
   );
 }
