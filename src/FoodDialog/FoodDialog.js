@@ -65,7 +65,7 @@ export const DialogShadow = styled.div`
   position: fixed;
   height: 100%;
   width: 100%;
-  top: black;
+  top: 0;
   background-color: black;
   opacity: 0.7;
   z-index: 11;
