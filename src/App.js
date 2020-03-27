@@ -52,15 +52,17 @@ function App() {
     <>
       <BrowserRouter>
         <GlobalStyle />
-        <Banner />
-        <Navbar {...auth} />
-        <Order {...orders} {...openFood} {...auth} {...orderDialog} />
-        <Routes
-          orders={orders}
-          orderDialog={orderDialog}
-          openFood={openFood}
-          history={history}
-        />
+        <div style={{ paddingRight: '340px' }}>
+          <Banner />
+          <Navbar {...auth} />
+          <Order {...orders} {...openFood} {...auth} {...orderDialog} />
+          <Routes
+            orders={orders}
+            orderDialog={orderDialog}
+            openFood={openFood}
+            history={history}
+          />
+        </div>
       </BrowserRouter>
     </>
   );
