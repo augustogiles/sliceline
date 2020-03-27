@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
-import { auth, gAuthProvider } from '../firebase';
+
+const auth = window.firebase.auth();
+const provider = new window.firebase.auth.GoogleAuthProvider();
 
 export default function useAuth() {
   const [authenticated, setAuthenticated] = useState(null);
 
   function login() {
-    auth.signInWithPopup(gAuthProvider);
+    auth.signInWithPopup(provider);
   }
 
   function logout() {
