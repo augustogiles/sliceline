@@ -40,13 +40,14 @@ function App() {
   const orderDialog = useOrderDialog();
 
   useEffect(() => {
-    getHistory().then(ordersHist => {
-      setHistory(ordersHist);
-    });
+    if (auth.loggedIn) {
+      getHistory().then(ordersHist => {
+        setHistory(ordersHist);
+      });
+    }
   }, []);
 
   useTitle({ ...openFood, ...orders });
-  console.log(history);
   return (
     <>
       <BrowserRouter>
@@ -54,7 +55,12 @@ function App() {
         <Banner />
         <Navbar {...auth} />
         <Order {...orders} {...openFood} {...auth} {...orderDialog} />
-        <Routes orders={orders} orderDialog={orderDialog} openFood={openFood} />
+        <Routes
+          orders={orders}
+          orderDialog={orderDialog}
+          openFood={openFood}
+          history={history}
+        />
       </BrowserRouter>
     </>
   );
