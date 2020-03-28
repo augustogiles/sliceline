@@ -22,8 +22,6 @@ export default function useAuth() {
       user => {
         if (user) {
           setAuthenticated(user);
-        } else {
-          setAuthenticated();
         }
       },
       err => {
