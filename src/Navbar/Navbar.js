@@ -73,9 +73,11 @@ function Navbar({ login, loggedIn, logout }) {
         <li>
           <Link to="/">Menu</Link>
         </li>
-        <li>
-          <Link to="/history">My past orders</Link>
-        </li>
+        {loggedIn && (
+          <li>
+            <Link to="/history">My past orders</Link>
+          </li>
+        )}
       </RouterList>
       <UserStatus>
         {loggedIn ? (

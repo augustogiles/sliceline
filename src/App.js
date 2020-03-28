@@ -16,16 +16,22 @@ function App() {
   const orders = useOrders();
   const auth = useAuth();
   const orderDialog = useOrderDialog();
-  useTitle({ ...openFood, ...orders });
 
+  useTitle({ ...openFood, ...orders });
   return (
     <>
       <BrowserRouter>
         <GlobalStyle />
-        <Banner />
-        <Navbar {...auth} />
-        <Order {...orders} {...openFood} {...auth} {...orderDialog} />
-        <Routes orders={orders} orderDialog={orderDialog} openFood={openFood} />
+        <div style={{ paddingRight: '340px' }}>
+          <Banner />
+          <Navbar {...auth} />
+          <Order {...orders} {...openFood} {...auth} {...orderDialog} />
+          <Routes
+            orders={orders}
+            orderDialog={orderDialog}
+            openFood={openFood}
+          />
+        </div>
       </BrowserRouter>
     </>
   );

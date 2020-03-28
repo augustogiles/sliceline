@@ -13,7 +13,7 @@ import { database } from '../firebase';
 const OrderStyled = styled.div`
   position: fixed;
   right: 0px;
-  top: 50px;
+  bottom: 0px;
   width: 340px;
   background-color: white;
   height: 100%;
@@ -55,8 +55,8 @@ const DetailItem = styled.div`
   font-size: 10px;
 `;
 
-function sendOrder(orders, { email, displayName }) {
-  const newOrderRef = database.ref('orders').push();
+function sendOrder(orders, { email, displayName, uid }) {
+  const newOrderRef = database.ref(`orders/${uid}`).push();
   const newOrders = orders.map(order => {
     return Object.keys(order).reduce((acc, orderKey) => {
       if (!order[orderKey]) {
@@ -79,7 +79,8 @@ function sendOrder(orders, { email, displayName }) {
   newOrderRef.set({
     order: newOrders,
     email,
-    displayName
+    displayName,
+    uid
   });
 }
 
