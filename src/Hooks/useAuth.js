@@ -13,6 +13,7 @@ export default function useAuth() {
       .signOut()
       .then(() => {
         // Success
+        setAuthenticated(null);
       })
       .catch(err => console.log(err));
   }
