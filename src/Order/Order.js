@@ -14,13 +14,14 @@ const OrderStyled = styled.div`
   position: fixed;
   right: 0px;
   bottom: 0px;
-  width: 340px;
+  width: ${props => (props.openCart ? '340px' : '0')};
   background-color: white;
   height: 100%;
   z-index: 10;
   box-shadow: 4px 0px 5px 4px grey;
   display: flex;
   flex-direction: column;
+  transition: width 0.5s ease-in-out;
 `;
 
 const OrderContent = styled(DialogContent)`
@@ -46,13 +47,19 @@ const OrderContainer = styled.div`
 const OrderItem = styled.div`
   padding: 10px 0;
   display: grid;
-  grid-template-columns: 20px 150px 20px 60px;
+  grid-template-columns: ${props =>
+    props.header ? '340px' : '20px 150px 20px 60px'};
+  text-align: ${props => (props.header ? 'left' : 'center')};
   justify-content: space-between;
 `;
 
 const DetailItem = styled.div`
   color: grey;
   font-size: 10px;
+`;
+
+export const CartFooter = styled(DialogFooter)`
+  display: ${props => (props.openCart ? 'flex' : 'none')};
 `;
 
 function sendOrder(orders, { email, displayName, uid }) {
@@ -90,7 +97,8 @@ export default function Order({
   setOpenFood,
   login,
   loggedIn,
-  setOpenOrderDialog
+  setOpenOrderDialog,
+  openCart
 }) {
   const subtotal = orders.reduce((total, order) => {
     return total + getPrice(order);
@@ -115,12 +123,14 @@ export default function Order({
   };
 
   return (
-    <OrderStyled>
+    <OrderStyled openCart={openCart}>
       {orders.length === 0 ? (
-        <OrderContent>Empty Order</OrderContent>
+        <OrderItem header>Empty Order</OrderItem>
       ) : (
         <OrderContent>
-          <OrderContainer> Your order: </OrderContainer>
+          <OrderContainer>
+            <OrderItem header> Your order: </OrderItem>
+          </OrderContainer>
           {orders.map((order, index) => (
             <OrderContainer editable key={order.name}>
               <OrderItem
@@ -174,9 +184,9 @@ export default function Order({
         </OrderContent>
       )}
       {!!orders.length && (
-        <DialogFooter>
+        <CartFooter openCart={openCart}>
           <ConfirmButton onClick={handleCheckout}>Checkout</ConfirmButton>
-        </DialogFooter>
+        </CartFooter>
       )}
     </OrderStyled>
   );
