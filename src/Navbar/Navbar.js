@@ -21,6 +21,7 @@ const Logo = styled(Title)`
   font-size: 20px;
   color: white;
   text-shadow: 1px 1px 4px #380502;
+  margin-left: 1rem;
 `;
 
 const RouterList = styled.ul`
@@ -59,16 +60,17 @@ const UserStatus = styled.div`
   justify-content: space-between;
 
   svg {
-    margin: 0 8px;
+    margin-right: 24px;
+    cursor: pointer;
   }
 `;
 
 const LoginButton = styled.button`
   display: inline-block;
   height: 32px;
-  min-width: 120px;
+  min-width: 60px;
 
-  margin: 0 8px;
+  margin: 0 24px 0 0;
   padding: 0 20px;
 
   border-radius: 4px;
@@ -115,7 +117,7 @@ function Navbar({ login, loggedIn, logout, openCart, setOpenCart }) {
         {loggedIn ? (
           <LoginButton onClick={logout}> Log out </LoginButton>
         ) : (
-          <LoginButton onClick={login}> Log in / Sign up </LoginButton>
+          <LoginButton onClick={login}> Log in </LoginButton>
         )}
         <FiShoppingCart size={24} color="#FFF" onClick={handleCart} />
       </UserStatus>
