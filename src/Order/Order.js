@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FiX } from 'react-icons/fi';
 import {
   DialogContent,
   DialogFooter,
@@ -27,6 +28,11 @@ const OrderStyled = styled.div`
 const OrderContent = styled(DialogContent)`
   padding: 20px;
   height: 100%;
+  svg {
+    position: relative;
+    left: 260px;
+    cursor: pointer;
+  }
 `;
 
 const OrderContainer = styled.div`
@@ -45,10 +51,10 @@ const OrderContainer = styled.div`
 `;
 
 const OrderItem = styled.div`
-  padding: 10px 0;
+  padding: 10px 20px;
   display: grid;
   grid-template-columns: ${props =>
-    props.header ? '340px' : '20px 150px 20px 60px'};
+    props.header ? '260px' : '20px 150px 20px 60px'};
   text-align: ${props => (props.header ? 'left' : 'center')};
   justify-content: space-between;
 `;
@@ -98,7 +104,8 @@ export default function Order({
   login,
   loggedIn,
   setOpenOrderDialog,
-  openCart
+  openCart,
+  setOpenCart
 }) {
   const subtotal = orders.reduce((total, order) => {
     return total + getPrice(order);
@@ -122,67 +129,78 @@ export default function Order({
     }
   };
 
+  const handleCloseCart = () => {
+    setOpenCart(false);
+  };
+
   return (
     <OrderStyled openCart={openCart}>
-      {orders.length === 0 ? (
-        <OrderItem header>Empty Order</OrderItem>
-      ) : (
-        <OrderContent>
-          <OrderContainer>
-            <OrderItem header> Your order: </OrderItem>
-          </OrderContainer>
-          {orders.map((order, index) => (
-            <OrderContainer editable key={order.name}>
-              <OrderItem
-                onClick={() => {
-                  setOpenFood({ ...order, index });
-                }}
-              >
-                <div>{order.quantity}</div>
-                <div>{order.name}</div>
-                <DefaultButton
-                  onClick={e => {
-                    e.stopPropagation();
-                    deleteItem(index);
+      <OrderContent>
+        <FiX size={40} strokeWidth={2} onClick={handleCloseCart} />
+        {orders.length === 0 ? (
+          <>
+            <OrderItem header>
+              <div>Empty Order</div>
+            </OrderItem>
+          </>
+        ) : (
+          <>
+            <OrderContainer>
+              <OrderItem header> Your order: </OrderItem>
+            </OrderContainer>
+            {orders.map((order, index) => (
+              <OrderContainer editable key={order.name}>
+                <OrderItem
+                  onClick={() => {
+                    setOpenFood({ ...order, index });
                   }}
                 >
-                  <span role="img" aria-label="bin">
-                    🗑️
-                  </span>
-                </DefaultButton>
-                <div>{formatPrice(getPrice(order))}</div>
+                  <div>{order.quantity}</div>
+                  <div>{order.name}</div>
+                  <DefaultButton
+                    onClick={e => {
+                      e.stopPropagation();
+                      deleteItem(index);
+                    }}
+                  >
+                    <span role="img" aria-label="bin">
+                      🗑️
+                    </span>
+                  </DefaultButton>
+                  <div>{formatPrice(getPrice(order))}</div>
+                </OrderItem>
+                <DetailItem>
+                  {order.toppings
+                    .filter(topping => topping.checked)
+                    .map(topping => topping.name)
+                    .join(', ')}
+                </DetailItem>
+                {order.choice && <DetailItem>{order.choice}</DetailItem>}
+              </OrderContainer>
+            ))}
+            <>
+              <OrderItem>
+                <div />
+                <div>Sub-Total</div>
+                <div>{formatPrice(subtotal)}</div>
+                <div />
               </OrderItem>
-              <DetailItem>
-                {order.toppings
-                  .filter(topping => topping.checked)
-                  .map(topping => topping.name)
-                  .join(', ')}
-              </DetailItem>
-              {order.choice && <DetailItem>{order.choice}</DetailItem>}
-            </OrderContainer>
-          ))}
-          <OrderContainer>
-            <OrderItem>
-              <div />
-              <div>Sub-Total</div>
-              <div>{formatPrice(subtotal)}</div>
-              <div />
-            </OrderItem>
-            <OrderItem>
-              <div />
-              <div>Tax</div>
-              <div>{formatPrice(tax)}</div>
-              <div />
-            </OrderItem>
-            <OrderItem>
-              <div />
-              <div>Total</div>
-              <div>{formatPrice(total)}</div>
-              <div />
-            </OrderItem>
-          </OrderContainer>
-        </OrderContent>
-      )}
+              <OrderItem>
+                <div />
+                <div>Tax</div>
+                <div>{formatPrice(tax)}</div>
+                <div />
+              </OrderItem>
+              <OrderItem>
+                <div />
+                <div>Total</div>
+                <div>{formatPrice(total)}</div>
+                <div />
+              </OrderItem>
+            </>
+          </>
+        )}
+      </OrderContent>
       {!!orders.length && (
         <CartFooter openCart={openCart}>
           <ConfirmButton onClick={handleCheckout}>Checkout</ConfirmButton>
