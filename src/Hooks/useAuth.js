@@ -12,7 +12,6 @@ export default function useAuth() {
     auth
       .signOut()
       .then(() => {
-        // Success
         setAuthenticated(null);
       })
       .catch(err => console.log(err));
