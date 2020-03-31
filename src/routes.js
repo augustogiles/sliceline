@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import History from './Pages/History';
 import Main from './Pages/Main';
 
-function Routes(distProps) {
+function Routes({ setOpenFood }) {
   const Routs = useMemo(
     () => (
       <Switch>
@@ -12,11 +12,11 @@ function Routes(distProps) {
         <Route
           path="/"
           exact
-          component={props => <Main {...props} {...distProps} />}
+          component={() => <Main setOpenFood={setOpenFood} />}
         />
       </Switch>
     ),
-    [distProps]
+    [setOpenFood]
   );
   return Routs;
 }

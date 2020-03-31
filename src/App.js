@@ -44,11 +44,7 @@ function App() {
           />
           <OrderDialog {...orderDialog} {...orders} />
           <FoodDialog {...openFood} {...orders} />
-          <Routes
-            orders={orders}
-            orderDialog={orderDialog}
-            openFood={openFood}
-          />
+          <Routes {...openFood} />
         </Container>
       </BrowserRouter>
     </>

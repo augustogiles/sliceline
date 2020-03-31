@@ -4,18 +4,14 @@ import { formatPrice } from '../Data/FoodData';
 import { Food, FoodGrid, FoodLabel } from './FoodGrid';
 
 const Menu = ({ foodList, setOpenFood }) => {
+  const openFood = food => () => setOpenFood(food);
+
   const sectionGrid = (sectionName, section) => (
     <React.Fragment key={`frag${sectionName}`}>
       <h1 key={`section_${sectionName}`}>{sectionName}</h1>
       <FoodGrid key={sectionName}>
         {section.map(food => (
-          <Food
-            key={food.name}
-            img={food.img}
-            onClick={() => {
-              setOpenFood(food);
-            }}
-          >
+          <Food key={food.name} img={food.img} onClick={openFood(food)}>
             <FoodLabel key={`label_${food.name}`}>
               <div>{food.name}</div>
               <div>{formatPrice(food.price)}</div>
