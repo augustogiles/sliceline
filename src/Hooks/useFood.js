@@ -48,7 +48,7 @@ function useFood() {
 
   useEffect(() => {
     fetchFood();
-  }, []);
+  }, [fetchFood]);
 
   return { foodList };
 }

@@ -16,7 +16,7 @@ function Routes(distProps) {
         />
       </Switch>
     ),
-    []
+    [distProps]
   );
   return Routs;
 }
