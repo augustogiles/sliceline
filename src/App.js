@@ -17,7 +17,7 @@ import Routes from './routes';
 
 const Container = styled.div`
   margin-right: ${props => (props.openCart ? '340px' : '0')};
-  transition: margin-right 0.5s ease-in-out;
+  transition: margin-right 0.3s ease-in-out;
 `;
 
 function App() {

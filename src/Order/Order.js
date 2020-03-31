@@ -22,7 +22,7 @@ const OrderStyled = styled.div`
   box-shadow: 4px 0px 5px 4px grey;
   display: flex;
   flex-direction: column;
-  transition: width 0.5s ease-in-out;
+  transition: width 0.3s ease-in-out;
 `;
 
 const OrderContent = styled(DialogContent)`
