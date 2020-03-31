@@ -1,18 +1,24 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import History from './Pages/History';
 import Main from './Pages/Main';
 
 function Routes(distProps) {
-  return (
-    <>
+  const Routs = useMemo(
+    () => (
       <Switch>
-        <Redirect from="/react-pizza" to="/" />
+        <Redirect from="/react-pizza" exact to="/" />
         <Route path="/history" component={History} />
-        <Route component={props => <Main {...props} {...distProps} />} />
+        <Route
+          path="/"
+          exact
+          component={props => <Main {...props} {...distProps} />}
+        />
       </Switch>
-    </>
+    ),
+    []
   );
+  return Routs;
 }
 
 export default Routes;
