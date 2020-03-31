@@ -5,6 +5,8 @@ import Banner from './Banner/Banner';
 import Navbar from './Navbar/Navbar';
 import GlobalStyle from './Styles/GlobalStyle';
 import Order from './Order/Order';
+import FoodDialog from './FoodDialog/FoodDialog';
+import OrderDialog from './Order/OrderDialog';
 import useOpenFood from './Hooks/useOpenFood';
 import useOpenCart from './Hooks/useOpenCart';
 import useOrders from './Hooks/useOrders';
@@ -19,11 +21,11 @@ const Container = styled.div`
 `;
 
 function App() {
-  const openCart = useOpenCart();
-  const openFood = useOpenFood();
-  const orders = useOrders();
   const auth = useAuth();
+  const openCart = useOpenCart();
+  const orders = useOrders();
   const orderDialog = useOrderDialog();
+  const openFood = useOpenFood();
 
   useTitle({ ...openFood, ...orders });
   return (
@@ -40,6 +42,8 @@ function App() {
             {...orderDialog}
             {...openCart}
           />
+          <OrderDialog {...orderDialog} {...orders} />
+          <FoodDialog {...openFood} {...orders} />
           <Routes
             orders={orders}
             orderDialog={orderDialog}

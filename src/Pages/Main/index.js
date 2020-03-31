@@ -1,14 +1,10 @@
 import React from 'react';
 import Menu from '../../Menu/Menu';
-import FoodDialog from '../../FoodDialog/FoodDialog';
-import OrderDialog from '../../Order/OrderDialog';
+import useFood from '../../Hooks/useFood';
 
-export default function Main({ orderDialog, orders, openFood }) {
-  return (
-    <>
-      <OrderDialog {...orderDialog} {...orders} />
-      <FoodDialog {...openFood} {...orders} />
-      <Menu {...openFood} />
-    </>
-  );
+function Main({ openFood }) {
+  const foods = useFood();
+  return <Menu {...openFood} {...foods} />;
 }
+
+export default Main;
