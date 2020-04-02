@@ -32,6 +32,9 @@ const OrderContent = styled(DialogContent)`
     position: relative;
     left: 260px;
     cursor: pointer;
+    &:hover {
+      color: #707070;
+    }
   }
 `;
 
@@ -136,7 +139,9 @@ export default function Order({
   return (
     <OrderStyled openCart={openCart}>
       <OrderContent>
-        <FiX size={40} strokeWidth={2} onClick={handleCloseCart} />
+        <div>
+          <FiX size={40} strokeWidth={2} onClick={handleCloseCart} />
+        </div>
         {orders.length === 0 ? (
           <>
             <OrderItem header>
