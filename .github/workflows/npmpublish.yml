@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@develop
+        uses: workflows/checkout@develop
       - name: Install Dependencies
         run: npm install
       - name: Build
