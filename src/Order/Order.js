@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FiX } from 'react-icons/fi';
+import { Button } from '../Styles/commons';
 import {
   DialogContent,
   DialogFooter,
@@ -28,12 +29,20 @@ const OrderStyled = styled.div`
 const OrderContent = styled(DialogContent)`
   padding: 20px;
   height: 100%;
-  svg {
-    position: relative;
-    left: 260px;
-    cursor: pointer;
-    &:hover {
-      color: #707070;
+`;
+
+const OrderButton = styled(Button)`
+  padding: 0;
+  background-color: transparent;
+  color: black;
+  position: relative;
+  left: 260px;
+  cursor: pointer;
+  &:hover {
+    color: #707070;
+    svg {
+      border-radius: 20px;
+      background-color: rgba(240, 240, 245, 0.4);
     }
   }
 `;
@@ -139,9 +148,9 @@ export default function Order({
   return (
     <OrderStyled openCart={openCart}>
       <OrderContent>
-        <div>
-          <FiX size={40} strokeWidth={2} onClick={handleCloseCart} />
-        </div>
+        <OrderButton onClick={handleCloseCart}>
+          <FiX size={40} strokeWidth={2} />
+        </OrderButton>
         {orders.length === 0 ? (
           <>
             <OrderItem header>
