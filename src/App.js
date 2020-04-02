@@ -13,6 +13,7 @@ import useOrders from './Hooks/useOrders';
 import useTitle from './Hooks/useTitle';
 import useAuth from './Hooks/useAuth';
 import useOrderDialog from './Hooks/useOrderDialog';
+import useKeyPress from './Hooks/useKeyPress';
 import Routes from './routes';
 
 const Container = styled.div`
@@ -26,8 +27,21 @@ function App() {
   const orders = useOrders();
   const orderDialog = useOrderDialog();
   const openFood = useOpenFood();
+  const { keyPressed, setKeyPressed } = useKeyPress('Escape');
 
   useTitle({ ...openFood, ...orders });
+
+  if (keyPressed && !!openCart.openCart && !!openFood.openFood) {
+    setKeyPressed(false);
+    openFood.setOpenFood();
+  } else if (keyPressed && !!openFood.openFood) {
+    setKeyPressed(false);
+    openFood.setOpenFood();
+  } else if (keyPressed && !!openCart.openCart) {
+    setKeyPressed(false);
+    openCart.setOpenCart();
+  }
+
   return (
     <>
       <BrowserRouter>
