@@ -1,9 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+
+import { FiX } from 'react-icons/fi';
 import { FoodLabel } from '../Menu/FoodGrid';
 import { pizzaRed } from '../Styles/colors';
-import Title from '../Styles/title';
 import { formatPrice } from '../Data/FoodData';
+
+import Title from '../Styles/title';
+import { Button } from '../Styles/commons';
+
 import QuantityInput from './QuantityInput';
 import useQuantity from '../Hooks/useQuantity';
 import useToppings from '../Hooks/useToppings';
@@ -21,6 +26,19 @@ export const Dialog = styled.div`
   left: calc(50% - 250px);
   display: flex;
   flex-direction: column;
+`;
+
+const DialogButton = styled(Button)`
+  background-color: transparent;
+  position: absolute;
+  right: 0;
+
+  svg {
+    color: #fff;
+    &:hover {
+      color: #707070;
+    }
+  }
 `;
 
 export const DialogContent = styled.div`
@@ -134,6 +152,9 @@ function FoodDialogContainer({ openFood, setOpenFood, setOrders, orders }) {
     <>
       <DialogShadow onClick={close} />
       <Dialog>
+        <DialogButton onClick={close}>
+          <FiX size={40} />
+        </DialogButton>
         <DialogBanner img={openFood.img}>
           <DialogBannerName>{openFood.name}</DialogBannerName>
         </DialogBanner>
