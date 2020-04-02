@@ -27,20 +27,19 @@ function App() {
   const orders = useOrders();
   const orderDialog = useOrderDialog();
   const openFood = useOpenFood();
-  const { keyPressed, setKeyPressed } = useKeyPress('Escape');
 
-  useTitle({ ...openFood, ...orders });
-
-  if (keyPressed && !!openCart.openCart && !!openFood.openFood) {
-    setKeyPressed(false);
-    openFood.setOpenFood();
-  } else if (keyPressed && !!openFood.openFood) {
-    setKeyPressed(false);
-    openFood.setOpenFood();
-  } else if (keyPressed && !!openCart.openCart) {
-    setKeyPressed(false);
-    openCart.setOpenCart();
+  function onPressUp() {
+    if (!!openCart.openCart && !!openFood.openFood) {
+      openFood.setOpenFood();
+    } else if (openFood.openFood) {
+      openFood.setOpenFood();
+    } else if (openCart.openCart) {
+      openCart.setOpenCart();
+    }
   }
+
+  useKeyPress('Escape', onPressUp);
+  useTitle({ ...openFood, ...orders });
 
   return (
     <>
