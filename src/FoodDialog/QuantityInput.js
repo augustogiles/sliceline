@@ -13,7 +13,16 @@ const QuantityInputStyled = styled.input`
 
 const IncrementContainer = styled(Title)`
   display: flex;
-  height: 24px;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  height: 56px;
+`;
+
+const IncrementStyled = styled.div`
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
 `;
 
 const IncrementButton = styled.div`
@@ -44,16 +53,18 @@ export default function QuantityInput({ quantity }) {
   return (
     <IncrementContainer>
       <div>Quantity:</div>
-      <IncrementButton
-        onClick={() => onIncrementHandle(quantity, -1)}
-        disabled={quantity.value === 1}
-      >
-        -
-      </IncrementButton>
-      <QuantityInputStyled {...quantity} />
-      <IncrementButton onClick={() => onIncrementHandle(quantity, 1)}>
-        +
-      </IncrementButton>
+      <IncrementStyled>
+        <IncrementButton
+          onClick={() => onIncrementHandle(quantity, -1)}
+          disabled={quantity.value === 1}
+        >
+          -
+        </IncrementButton>
+        <QuantityInputStyled {...quantity} />
+        <IncrementButton onClick={() => onIncrementHandle(quantity, 1)}>
+          +
+        </IncrementButton>
+      </IncrementStyled>
     </IncrementContainer>
   );
 }
