@@ -103,6 +103,7 @@ function sendOrder(orders, { email, displayName, uid }) {
   });
   newOrderRef.set({
     order: newOrders,
+    date: new Date().getTime(),
     email,
     displayName,
     uid
