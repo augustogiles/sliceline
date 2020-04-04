@@ -12,6 +12,16 @@ jobs:
   build:
     name: Build and Deploy to Firebase Hosting
     runs-on: ubuntu-latest
+    
+    env:
+      REACT_APP_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+      REACT_APP_AUTH_DOMAIN: ${{ secrets.FIREBASE_AUTH_DOMAIN }}
+      REACT_APP_DB_URL: ${{ secrets.FIREBASE_DB_URL }}
+      REACT_APP_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
+      REACT_APP_STORAGE_BUCKET: ${{ secrets.FIREBASE_STORAGE_BUCKET }}
+      REACT_APP_MSG_ID: ${{ secrets.FIREBASE_MESSAGE_ID }}
+      REACT_APP_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
+    
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v1
