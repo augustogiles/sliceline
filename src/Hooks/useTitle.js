@@ -1,16 +1,20 @@
 import { useEffect } from 'react';
 
 function useTitle({ openFood, orders }) {
+  const amount = Object.values(orders).reduce(
+    (acc, { quantity }) => quantity + acc,
+    0
+  );
+
   useEffect(() => {
     if (openFood) {
       document.title = openFood.name;
     } else {
       document.title =
-        orders.length === 0
+        amount === 0
           ? `What's for dinner?`
-          : `[${orders.length}] items in your order!`;
+          : `[${amount}] items in your order!`;
     }
   });
 }
-
 export default useTitle;

@@ -137,14 +137,20 @@ function FoodDialogContainer({ openFood, setOpenFood, setOrders, orders }) {
   };
 
   function editOrder() {
-    const newOrders = [...orders];
-    newOrders[openFood.index] = order;
+    const newOrders = { ...orders };
+    newOrders[openFood.id] = order;
     setOrders(newOrders);
     close();
   }
 
   function addToOrder() {
-    setOrders([...orders, order]);
+    const newOrders = { ...orders };
+    if (newOrders[order.id]) {
+      newOrders[order.id].quantity += 1;
+    } else {
+      newOrders[order.id] = order;
+    }
+    setOrders(newOrders);
     close();
   }
 

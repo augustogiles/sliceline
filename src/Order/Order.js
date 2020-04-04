@@ -120,16 +120,17 @@ export default function Order({
   openCart,
   setOpenCart
 }) {
-  const subtotal = orders.reduce((total, order) => {
+  const orderArray = Object.values(orders);
+  const subtotal = orderArray.reduce((total, order) => {
     return total + getPrice(order);
   }, 0);
 
   const tax = subtotal * 0.07;
   const total = subtotal + tax;
 
-  const deleteItem = index => {
-    const newOrders = [...orders];
-    newOrders.splice(index, 1);
+  const deleteItem = id => {
+    const newOrders = { ...orders };
+    delete newOrders[id];
     setOrders(newOrders);
   };
 
@@ -138,7 +139,7 @@ export default function Order({
       login();
     } else {
       setOpenOrderDialog(true);
-      sendOrder(orders, loggedIn);
+      sendOrder(orderArray, loggedIn);
     }
   };
 
@@ -152,7 +153,7 @@ export default function Order({
         <OrderButton onClick={handleCloseCart}>
           <FiX size={40} strokeWidth={2} />
         </OrderButton>
-        {orders.length === 0 ? (
+        {orderArray.length === 0 ? (
           <>
             <OrderItem header>
               <div>Empty Order</div>
@@ -163,7 +164,7 @@ export default function Order({
             <OrderContainer>
               <OrderItem header> Your order: </OrderItem>
             </OrderContainer>
-            {orders.map((order, index) => (
+            {orderArray.map((order, index) => (
               <OrderContainer editable key={order.name}>
                 <OrderItem
                   onClick={() => {
@@ -175,7 +176,7 @@ export default function Order({
                   <DefaultButton
                     onClick={e => {
                       e.stopPropagation();
-                      deleteItem(index);
+                      deleteItem(order.id);
                     }}
                   >
                     <span role="img" aria-label="bin">
@@ -216,7 +217,7 @@ export default function Order({
           </>
         )}
       </OrderContent>
-      {!!orders.length && (
+      {!!orderArray.length && (
         <CartFooter openCart={openCart}>
           <ConfirmButton onClick={handleCheckout}>Checkout</ConfirmButton>
         </CartFooter>

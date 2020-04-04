@@ -13,7 +13,7 @@ export default function OrderDialog({
   setOrders
 }) {
   const handleOpenOrderDialog = () => {
-    setOrders([]);
+    setOrders({});
     setOpenOrderDialog();
   };
 
