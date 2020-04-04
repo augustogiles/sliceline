@@ -15,22 +15,28 @@ function reduceItem(foodList) {
 
 async function getFood() {
   let foodList = null;
-  const ordersListRef = database.ref('foods');
+  let foods = JSON.parse(localStorage.getItem('menu'));
 
-  await ordersListRef.once(await 'value', snap => {
-    const objects = snap.val();
-    foodList = Object.keys(snap.val()).map(id => {
-      const data = objects[id];
-      const food = {
-        id,
-        ...data
-      };
+  if (!foods) {
+    const ordersListRef = database.ref('foods');
 
-      return food;
+    await ordersListRef.once(await 'value', snap => {
+      const objects = snap.val();
+      foodList = Object.keys(snap.val()).map(id => {
+        const data = objects[id];
+        const food = {
+          id,
+          ...data
+        };
+
+        return food;
+      });
     });
-  });
+    foods = await reduceItem(foodList);
+    localStorage.setItem('menu', JSON.stringify(foods));
+  }
 
-  return reduceItem(foodList);
+  return foods;
 }
 
 function useFood() {
