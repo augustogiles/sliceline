@@ -1,9 +1,14 @@
 {
   /* Visit https://firebase.google.com/docs/database/security to learn more about security rules. */
   "rules": {
+    "foods": {
+      ".read": true
+    },
     "orders": {
-      ".write": true,
-      ".read": true  
+      "$uid": {
+        ".write": "$uid === auth.uid",
+        ".read": "$uid === auth.uid"
+      }  
     }
   }
 }
