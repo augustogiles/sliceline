@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { FiShoppingCart } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
-import { pizzaRed } from '../Styles/colors';
-import Title from '../Styles/title';
+import { pizzaRed } from '../../Styles/colors';
+import Title from '../../Styles/title';
 
 const NavbarStyled = styled.div`
   background-color: ${pizzaRed};

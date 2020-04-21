@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { auth, gAuthProvider } from '../firebase';
+import { auth, gAuthProvider } from '../config/firebase';
 
 export default function useAuth() {
   const [authenticated, setAuthenticated] = useState(null);

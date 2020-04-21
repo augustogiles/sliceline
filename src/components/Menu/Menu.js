@@ -1,6 +1,6 @@
 import React from 'react';
-import { ContentWrapper } from '../Styles/commons';
-import { formatPrice } from '../Data/FoodData';
+import { ContentWrapper } from '../../Styles/commons';
+import { formatPrice } from '../../Data/FoodData';
 import { Food, FoodGrid, FoodLabel } from './FoodGrid';
 
 const Menu = ({ foodList, setOpenFood }) => {

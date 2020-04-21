@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FiX } from 'react-icons/fi';
-import { Button } from '../Styles/commons';
+import { Button } from '../../Styles/commons';
 import {
   DialogContent,
   DialogFooter,
@@ -9,8 +9,8 @@ import {
   DefaultButton,
   getPrice
 } from '../FoodDialog/FoodDialog';
-import { formatPrice } from '../Data/FoodData';
-import { database } from '../firebase';
+import { formatPrice } from '../../Data/FoodData';
+import { database } from '../../config/firebase';
 
 const OrderStyled = styled.div`
   position: fixed;
