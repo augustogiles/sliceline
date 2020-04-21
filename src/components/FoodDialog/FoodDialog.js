@@ -2,17 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { FiX } from 'react-icons/fi';
-import { FoodLabel } from '../Menu/FoodGrid';
-import { pizzaRed } from '../../Styles/colors';
-import { formatPrice } from '../../Data/FoodData';
+import { pizzaRed } from 'Styles/colors';
+import { formatPrice } from 'Data/FoodData';
 
-import Title from '../../Styles/title';
-import { Button } from '../../Styles/commons';
+import Title from 'Styles/title';
+import { Button } from 'Styles/commons';
 
+import useQuantity from 'Hooks/useQuantity';
+import useToppings from 'Hooks/useToppings';
+import useChoice from 'Hooks/useChoice';
 import QuantityInput from './QuantityInput';
-import useQuantity from '../../Hooks/useQuantity';
-import useToppings from '../../Hooks/useToppings';
-import useChoice from '../../Hooks/useChoice';
+import { FoodLabel } from '../Menu/FoodGrid';
 import Toppings from './Toppings';
 import Choices from './Choices';
 
