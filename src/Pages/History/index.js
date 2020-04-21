@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { ContentWrapper } from '../../Styles/commons';
-import { database } from '../../firebase';
+import { ContentWrapper } from 'Styles/commons';
+import { database } from 'config/firebase';
 
-import useAuth from '../../Hooks/useAuth';
+import useAuth from 'Hooks/useAuth';
 
 const TableWrapper = styled.div`
   padding: 1rem;

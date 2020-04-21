@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 
-import { database } from '../firebase';
+import { database } from '../config/firebase';
 
 function reduceItem(foodList) {
   return foodList.reduce((res, food) => {

@@ -1,20 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 import { BrowserRouter } from 'react-router-dom';
-import Banner from './Banner/Banner';
-import Navbar from './Navbar/Navbar';
-import GlobalStyle from './Styles/GlobalStyle';
-import Order from './Order/Order';
-import FoodDialog from './FoodDialog/FoodDialog';
-import OrderDialog from './Order/OrderDialog';
-import useOpenFood from './Hooks/useOpenFood';
-import useOpenCart from './Hooks/useOpenCart';
-import useOrders from './Hooks/useOrders';
-import useTitle from './Hooks/useTitle';
-import useAuth from './Hooks/useAuth';
-import useOrderDialog from './Hooks/useOrderDialog';
-import useKeyPress from './Hooks/useKeyPress';
-import Routes from './routes';
+import useOrders from 'Hooks/useOrders';
+import GlobalStyle from 'Styles/GlobalStyle';
+import useOpenFood from 'Hooks/useOpenFood';
+import useOpenCart from 'Hooks/useOpenCart';
+import useTitle from 'Hooks/useTitle';
+import useAuth from 'Hooks/useAuth';
+import useOrderDialog from 'Hooks/useOrderDialog';
+import useKeyPress from 'Hooks/useKeyPress';
+import Routes from 'routes';
+import OrderDialog from '../Order/OrderDialog';
+import FoodDialog from '../FoodDialog/FoodDialog';
+import Order from '../Order/Order';
+import Navbar from '../Navbar/Navbar';
+import Banner from '../Banner/Banner';
 
 const Container = styled.div`
   margin-right: ${props => (props.openCart ? '340px' : '0')};
