@@ -26,6 +26,7 @@ export const Dialog = styled.div`
   left: calc(50% - 250px);
   display: flex;
   flex-direction: column;
+  border-radius: 8px;
 `;
 
 const DialogButton = styled(Button)`
@@ -95,6 +96,8 @@ const DialogBanner = styled.div`
   ${({ img }) => (img ? `background-image: url(${img});` : `min-height: 75px;`)}
   background-position: center;
   background-size: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 `;
 
 const DialogBannerName = styled(FoodLabel)`
